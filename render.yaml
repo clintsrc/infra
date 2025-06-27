@@ -27,7 +27,7 @@
 databases:
   - name: render-postgres
     plan: free
-    #postgresMajorVersion: "16" # defaults to latest
+    # postgresMajorVersion: "16" # defaults to latest
     databaseName: auth_prod
     user: auth_rw
     region: oregon
