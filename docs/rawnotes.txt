@@ -1,12 +1,16 @@
+Try making the render.yaml monolithic for all supported projects: this would let you
+  inject the DB_URL. I thought Render would see an existing psql server as a conflict
+  but it seems to allow updating the existing instance after all!
 
-Internal
-postgresql://auth_rw:<user>@<password>/auth_prod_fpgg
 
-# postgresql://auth_rw:<user>@<password>/bookshelter_db
-# postgresql://auth_rw:<user>@<password>/kanban_db
-# postgresql://auth_rw:<user>@<password>/routinesaga_db
+The current workaround is to:
 
 External - create databases:
 psql "postgresql://auth_rw:<user>@<password>-a.oregon-postgres.render.com/auth_prod_fpgg" -c "CREATE DATABASE bookshelter_db;"
 psql "postgresql://auth_rw:<user>@<password>-a.oregon-postgres.render.com/auth_prod_fpgg" -c "CREATE DATABASE kanban_db;"
 psql "postgresql://auth_rw:<user>@<password>-a.oregon-postgres.render.com/auth_prod_fpgg" -c "CREATE DATABASE routinesaga_db;"
+
+Internal - update the app's env DB_URL, update and redeploy:
+postgresql://auth_rw:<user>@<password>/bookshelter_db
+postgresql://auth_rw:<user>@<password>/kanban_db
+postgresql://auth_rw:<user>@<password>/routinesaga_db
