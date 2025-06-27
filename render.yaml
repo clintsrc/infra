@@ -1,0 +1,24 @@
+#################################################################
+#
+# render.yaml
+#
+# Blueprint for shared PostgreSQL deployment
+#
+# Free-tier
+# - Expires every 30 days
+# - Use <External Database URL> to connect with psql and create the databases:
+#   $ psql "postgresql://<user>:<password>@<host>/<auth_prod> " -c "CREATE DATABASE <name_db>;"
+# - Use <Internal Database URL> value for projects that use it
+#   Update Environment variables: DB_URL=...<Internal Database URL>/<name_db>
+#
+# (ref: https://render.com/docs/blueprint-spec#)
+#
+#################################################################
+
+databases:
+  - name: render-postgres
+    plan: free
+    #postgresMajorVersion: "16" # defaults to latest
+    databaseName: auth_prod
+    user: auth_rw
+    region: oregon
