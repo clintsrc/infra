@@ -28,17 +28,41 @@ databases:
   - name: render-postgres
     plan: free
     # postgresMajorVersion: "16" # defaults to latest
-    databaseName: auth_prod
+    databaseName: primary_prod
     user: auth_rw
     region: oregon
 
-  - name: routinesaga-db
-    plan: free
-    databaseName: routinesaga_db
-    user: saga_rw
-    region: oregon
-
 services:
+  - type: web
+    name: BookShelter
+    branch: update-render
+    runtime: node
+    buildCommand: npm run render-seed
+    startCommand: npm start
+    envVars:
+      # Inject primary DB's connection string
+      # NOTE: you must manually update the database name in each of the Web Apps
+      #   to its individual name
+      - key: DB_URL
+        fromDatabase:
+          name: render-postgres
+          property: connectionString
+
+  - type: web
+    name: InYourLane
+    branch: main
+    runtime: node
+    buildCommand: npm run render-seed
+    startCommand: npm start
+    envVars:
+      # Inject primary DB's connection string
+      # NOTE: you must manually update the database name in each of the Web Apps
+      #   to its individual name
+      - key: DB_URL
+        fromDatabase:
+          name: render-postgres
+          property: connectionString
+
   - type: web
     name: routine-saga
     plan: free
@@ -47,7 +71,10 @@ services:
     buildCommand: pip install -r requirements_prod.txt
     startCommand: python manage.py migrate && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
-      - key: ROUTINESAGA_DATABASE_URL
+      # Inject primary DB's connection string
+      # NOTE: you must manually update the database name in each of the Web Apps
+      #   to its individual name
+      - key: DB_URL
         fromDatabase:
-          name: routinesaga-db
+          name: render-postgres
           property: connectionString
