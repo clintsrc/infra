@@ -36,7 +36,7 @@ services:
   - type: web
     name: BookShelter
     plan: free
-    branch: update-render
+    branch: main
     runtime: node
     buildCommand: npm run render-seed
     startCommand: npm start
