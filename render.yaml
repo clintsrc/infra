@@ -33,20 +33,20 @@ databases:
     region: oregon
 
 services:
-  - type: web
-    name: BookShelter
-    branch: update-render
-    runtime: node
-    buildCommand: npm run render-seed
-    startCommand: npm start
-    envVars:
-      # Inject primary DB's connection string
-      # NOTE: you must manually update the database name in each of the Web Apps
-      #   to its individual name
-      - key: DB_URL
-        fromDatabase:
-          name: render-postgres
-          property: connectionString
+  # - type: web
+  #   name: BookShelter
+  #   branch: update-render
+  #   runtime: node
+  #   buildCommand: npm run render-seed
+  #   startCommand: npm start
+  #   envVars:
+  #     # Inject primary DB's connection string
+  #     # NOTE: you must manually update the database name in each of the Web Apps
+  #     #   to its individual name
+  #     - key: DB_URL
+  #       fromDatabase:
+  #         name: render-postgres
+  #         property: connectionString
 
   - type: web
     name: InYourLane
