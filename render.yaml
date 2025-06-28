@@ -25,9 +25,10 @@
 #################################################################
 
 databases:
-  - name: render-postgres
+  - name: postgres-prod
     plan: free
     # postgresMajorVersion: "16" # defaults to latest
-    databaseName: auth_prod
+    databaseName: primary_prod
     user: auth_rw
     region: oregon
+
