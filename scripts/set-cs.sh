@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# External Database URL
+EXTERNAL_CS="<External Database URL here>"
+
+DATABASES=(
+  "bookshelter_db"
+  "kanban_db"
+  "routinesaga_db"
+)
+
+# A list for convenience later:
+echo "=================="
+echo "DATABASES:"
+echo "=================="
+for DB_NAME in "${DATABASES[@]}"; do
+  echo "${DB_NAME}"
+done
+echo "=================="
+
+# Export PGPASSWORD for psql
+export PGPASSWORD="$PG_PASSWORD"
+
+# Create each database
+for DB_NAME in "${DATABASES[@]}"; do
+  echo "Creating database: $DB_NAME"
+  psql "${EXTERNAL_CS}" -c "CREATE DATABASE $DB_NAME;"
+done
+
+# # Delete each database
+# for DB_NAME in "${DATABASES[@]}"; do
+#   echo "Deleting database: $DB_NAME"
+#   psql "${EXTERNAL_CS}" -c "DROP DATABASE $DB_NAME;"
+# done
+
+echo "=================="
+# Show databases
+psql "$EXTERNAL_CS" -Atc "SELECT datname FROM pg_database WHERE datistemplate = false;"
+
+# To connect:
+# psql "${EXTERNAL_CS}"
+# List: \l;
+# Exit: \q
+
+# Unset PGPASSWORD for security after the script finishes
+unset PGPASSWORD
