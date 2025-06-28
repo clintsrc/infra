@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # External Database URL
-EXTERNAL_CS="<External Database URL here>"
+EXTERNAL_CS="postgresql://auth_rw:ly6GVqTumWH6CJ37FesdXr5aR0zUNy1U@dpg-d1g4fiali9vc73a8j7g0-a.oregon-postgres.render.com/primary_prod_4owl"
 
 DATABASES=(
   "bookshelter_db"
