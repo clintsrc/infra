@@ -12,15 +12,17 @@
 #      Update Environment variables: DB_URL=...<Internal Database URL without the primary database name>/<name_db>
 #
 # Steps
-# 1. Delete the existing (expired) postgres instance
-# 2. Navigate to https://dashboard.render.com/blueprints
+# 1. Delete the existing (expired) postgres instance:
+#    https://dashboard.render.com/
+# 2. Navigate to the blueprints:
+#    https://dashboard.render.com/blueprints
 # 3. Run the "PostgreSQL Deployment" blueprint (it executes this script)
-#    This will create the postgres instance shared by all spps that need it
+#    This will create the postgres instance (~5m) shared by all spps that need it
 # 4. Get the new connection strings:
-#    <External Database URL>
 #    <Internal Database URL> -- remove the primary_prod* database from the end
+#    <External Database URL>
 # 5. Create the app databases (the apps that have blueprints use postgres):
-#    NOTE: !! See scripts/set-cs.sh.EXAMPLE script!!
+#    NOTE: !! See scripts/set-cs.sh.EXAMPLE script!! These are the commands that it executes:
 #       psql "<external_database_url>" -c "CREATE DATABASE bookshelter_db;"
 #       psql "<external_database_url>" -c "CREATE DATABASE kanban_db;"
 #       psql "<external_database_url>" -c "CREATE DATABASE routinesaga_db;"
@@ -39,4 +41,3 @@ databases:
     databaseName: primary_prod
     user: auth_rw
     region: oregon
-

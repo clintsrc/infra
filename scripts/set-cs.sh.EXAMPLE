@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#
+# 1. Set the EXTERNAL_CS
+# 2. Set the password in the shell for the script to read in (the password specified in
+#    render psql instance's External Database URL (postgresql://<user>:<password>@<host>)
+#    $ export PG_PASSWORD='<password>'
+#
+
 # External Database URL
 EXTERNAL_CS="<External Database URL>"
 
