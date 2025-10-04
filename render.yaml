@@ -16,18 +16,17 @@
 #    https://dashboard.render.com/
 # 2. Navigate to the blueprints:
 #    https://dashboard.render.com/blueprints
-# 3. Run the "PostgreSQL Deployment" blueprint (it executes this script)
+# 3. Run the "PostgreSQL Deployment" blueprint (it executes this script): Manual synch, Approve
 #    This will create the postgres instance (~5m) shared by all spps that need it
 # 4. Get the new connection strings:
 #    <Internal Database URL> -- remove the primary_prod* database from the end
 #    <External Database URL>
-# 5. Create the app databases (the apps that have blueprints use postgres):
-#    NOTE: !! See scripts/set-cs.sh.EXAMPLE script!! These are the commands that it executes:
-#       psql "<external_database_url>" -c "CREATE DATABASE bookshelter_db;"
-#       psql "<external_database_url>" -c "CREATE DATABASE kanban_db;"
-#       psql "<external_database_url>" -c "CREATE DATABASE routinesaga_db;"
-# 6. Update each app's environment: DB_URL=...<Internal Database URL>/<appname_db>
-# 7. Run each app's blueprint to redeploy it
+# 5. Create the app databases in the new instance (the apps that have Render blueprints use postgres):
+#    See scripts/set-cs.sh.EXAMPLE:
+#       scripts/set-cs.sh
+# 6. On Render, update each app's environment and redeploy:
+#    DB_URL=...<Internal Database URL>/<appname_db>
+# 7. Optional: To create an app from scratch, run the app's blueprint
 # 8. Update your reminder for the new expiration date (see the postgresql deployment details)
 #
 # (ref: https://render.com/docs/blueprint-spec#)
