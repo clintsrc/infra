@@ -1,14 +1,26 @@
 #!/bin/bash
 
+#############################################################################
+#
+# This creates databases on a Render PostgreSQL instance by running remote sql commands
+# REQUIREMENTS: a local postgres installation and its pgadmin password
+# These are the commands that it executes:
+#     psql "<external_database_url>" -c "CREATE DATABASE bookshelter_db;"
+#     psql "<external_database_url>" -c "CREATE DATABASE kanban_db;"
+#     psql "<external_database_url>" -c "CREATE DATABASE routinesaga_db;"
+#
+#
+# Steps:
 #
 # 1. Set the EXTERNAL_CS
+EXTERNAL_CS="<External Database URL>"
 # 2. Set the password in the shell for the script to read in (the password specified in
 #    render psql instance's External Database URL (postgresql://<user>:<password>@<host>)
 #    $ export PG_PASSWORD='<password>'
+# 2. Set an environment variable for your local pg admin password in your shell
+# 3. Run this script
 #
-
-# External Database URL
-EXTERNAL_CS="<External Database URL>"
+#############################################################################
 
 DATABASES=(
   "bookshelter_db"
