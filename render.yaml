@@ -19,7 +19,9 @@
 # 3. Run the "PostgreSQL Deployment" blueprint (it executes this script): Manual synch, Approve
 #    This will create the postgres instance (~5m) shared by all spps that need it
 # 4. Get the new connection strings:
-#    <Internal Database URL> -- remove the primary_prod* database from the end
+#    Internal Database URL:
+#    <Internal Database URL>
+#    External Database URL -- remove the primary_prod* database from the end:
 #    <External Database URL>
 # 5. Create the app databases in the new instance (the apps that have Render blueprints use postgres):
 #    See scripts/set-cs.sh.EXAMPLE:
