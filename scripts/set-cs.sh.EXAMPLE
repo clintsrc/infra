@@ -14,11 +14,7 @@
 #
 # 1. Set the EXTERNAL_CS
 EXTERNAL_CS="<External Database URL>"
-# 2. Set the password in the shell for the script to read in (the password specified in
-#    render psql instance's External Database URL (postgresql://<user>:<password>@<host>)
-#    $ export PG_PASSWORD='<password>'
-# 2. Set an environment variable for your local pg admin password in your shell
-# 3. Run this script
+# 2. Run this script
 #
 #############################################################################
 
@@ -30,14 +26,14 @@ DATABASES=(
 
 # A list for convenience later:
 echo "=================="
-echo "DATABASES:"
+echo "EFFECTED DATABASES"
 echo "=================="
 for DB_NAME in "${DATABASES[@]}"; do
   echo "${DB_NAME}"
 done
 echo "=================="
 
-# Export PGPASSWORD for psql
+# Export PGPASSWORD for local psql
 export PGPASSWORD="$PG_PASSWORD"
 
 # Create each database
@@ -53,6 +49,9 @@ done
 # done
 
 echo "=================="
+echo "FOUND DATABASES   "
+echo "=================="
+
 # Show databases
 psql "$EXTERNAL_CS" -Atc "SELECT datname FROM pg_database WHERE datistemplate = false;"
 
