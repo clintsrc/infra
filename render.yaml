@@ -6,10 +6,10 @@
 #
 # Overview
 # - Free-tier expires every 30 days
-# - <External Database URL> is for connecting to the instance with psql:
-#      e.g. $ psql "postgresql://<user>:<password>@<host>/<auth_prod>" -c "CREATE DATABASE <name_db>;"
 # - <Internal Database URL> value is the URl for projects that use it
 #      Update Environment variables: DB_URL=...<Internal Database URL without the primary database name>/<name_db>
+# - <External Database URL> is for connecting to the instance with psql:
+#      e.g. $ psql "postgresql://<user>:<password>@<host>/<auth_prod>" -c "CREATE DATABASE <name_db>;"
 #
 # Steps
 # 1. Delete the existing (expired) postgres instance:
