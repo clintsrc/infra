@@ -12,8 +12,9 @@
 #      e.g. $ psql "postgresql://<user>:<password>@<host>/<auth_prod>" -c "CREATE DATABASE <name_db>;"
 #
 # Steps
-# 1. Delete the existing (expired) postgres instance:
+# 1. Delete the existing (expired) postgres instance (projects list):
 #    https://dashboard.render.com/
+#    (If it's not listed it probably expired and was eventually automatically deleted)
 # 2. Navigate to the blueprints:
 #    https://dashboard.render.com/blueprints
 # 3. Run the "PostgreSQL Deployment" blueprint (it executes this script): Manual synch, Approve
